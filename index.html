@@ -46,16 +46,7 @@
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
             background: linear-gradient(45deg, var(--color-accent), var(--color-primary));
         }
- .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-          .association-logo {
-            height: 3rem;
-            width: auto;
-        }
-        
+
         /* כרטיסי סדנאות */
         .workshop-card {
             background: white;
@@ -141,18 +132,68 @@
             .logo {
                 height: 4rem;
             }
- .association-logo {
-                height: 2rem;
-            }
+
             nav a {
                 margin-right: 0;
                 margin-left: 1rem;
             }
         }
+
+        /* Add this new style for the logo container */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        /* Add this new style for the association logo */
+        .association-logo {
+            height: 3rem;
+            width: auto;
+        }
+        
+        @media (max-width: 768px) {
+            .association-logo {
+                height: 2rem;
+            }
+        }
+
+        /* Update header styles */
+        #navbar {
+            transition: all 0.3s ease;
+        }
+        
+        #navbar.scrolled {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        #navbar.scrolled a {
+            color: var(--color-secondary);
+        }
+        
+        #navbar.scrolled .logo,
+        #navbar.scrolled .association-logo {
+            filter: none;
+        }
+        
+        /* Add initial state for logos */
+        .logo, .association-logo {
+            filter: brightness(0) invert(1);
+            transition: all 0.3s ease;
+        }
+        
+        /* Add this new style for the mobile menu button */
+        .mobile-menu-button {
+            transition: all 0.3s ease;
+        }
+        
+        #navbar.scrolled .mobile-menu-button {
+            color: var(--color-secondary);
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
-   <body class="min-h-screen flex flex-col">
     <div class="discount-banner">
         הנחה מיוחדת לחברי איגוד הנדסאי האדריכלות והבניין ע"ר - 25% הנחה על כל הסדנאות!
     </div>
@@ -168,11 +209,12 @@
                 <a href="#workshops" class="ml-4 hover:text-primary transition-colors">סדנאות</a>
                 <a href="#testimonials" class="hover:text-primary transition-colors">המלצות</a>
             </nav>
-            <button class="md:hidden text-white" onclick="toggleMobileMenu()">
+            <button class="md:hidden text-white mobile-menu-button" onclick="toggleMobileMenu()">
                 <i class="fas fa-bars text-2xl"></i>
             </button>
         </div>
     </header>
+
     <!-- תפריט נייד -->
     <div id="mobileMenu" class="mobile-menu">
         <a href="#about" onclick="toggleMobileMenu()">אודות</a>
@@ -241,7 +283,7 @@
                         <img src="https://res.cloudinary.com/dsoh3yteb/image/upload/v1723557185/_c50c8048-35fb-4679-9382-b69f014f5d6e_duq94z.jpg" alt="PromeAI Workshop" class="w-full h-48 object-cover">
                         <div class="p-6">
                             <h3 class="text-2xl font-bold mb-2">סדנת PromeAI</h3>
-                            <p class="mb-4">למדו כיצד להשתמש ב-PromeAI ככלי יעיל לשיפור תהליכי העיצוב והתכנון שלכם.</p>
+<p class="mb-4">למדו כיצד להשתמש ב-PromeAI ככלי יעיל לשיפור תהליכי העיצוב והתכנון שלכם.</p>
                             <p class="mb-2"><strong>משך:</strong> שעתיים</p>
                             <p class="mb-2"><strong>תאריך:</strong> 5.11 בשעה 20:00</p>
                             <p class="mb-4">
@@ -258,7 +300,7 @@
                         <div class="p-6">
                             <h3 class="text-2xl font-bold mb-2">סדנת יסודות HomeStyler</h3>
                             <p class="mb-4">למדו ליצור הדמיות מרהיבות ותכניות מדויקות עם HomeStyler.</p>
-<p class="mb-2"><strong>משך:</strong> שעה וחצי כל מפגש, 4 מפגשים + מפגש שאלות ותשובות</p>
+                            <p class="mb-2"><strong>משך:</strong> שעה וחצי כל מפגש, 4 מפגשים + מפגש שאלות ותשובות</p>
                             <p class="mb-2"><strong>תאריכים:</strong></p>
                             <ul class="list-disc list-inside mb-2">
                                 <li>מפגש 1: 6.11 בשעה 20:00</li>
@@ -403,11 +445,9 @@
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
-                navbar.classList.add('bg-gray-800');
-                navbar.classList.remove('bg-transparent');
+                navbar.classList.add('scrolled');
             } else {
-                navbar.classList.remove('bg-gray-800');
-                navbar.classList.add('bg-transparent');
+                navbar.classList.remove('scrolled');
             }
         });
     </script>
