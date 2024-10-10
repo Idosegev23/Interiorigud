@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>סדנאות בינה מלאכותית למעצבי פנים - הנחה מיוחדת לחברי האיגוד</title>
+    <!-- קישורים לסגנונות ולספריות -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- גופן מותאם -->
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* הגדרות צבעים וגופנים */
+        :root {
+            --color-primary: #65218F;
+            --color-secondary: #363B46;
+            --color-accent: #C4E4F9;
+            --color-highlight: #346B75;
+            --color-light: #F9F9F9;
+            --color-dark: #0D0D0D;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background-color: var(--color-light);
+            color: var(--color-secondary);
+            text-align: right;
+        }
+
+        /* כפתור ראשי */
+        .btn-primary {
+            background: linear-gradient(45deg, var(--color-primary), var(--color-accent));
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(45deg, var(--color-accent), var(--color-primary));
+        }
+
+        /* כרטיסי סדנאות */
+        .workshop-card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .workshop-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* אזור ההרואי */
+        .hero {
+            background-image: url('https://res.cloudinary.com/dsoh3yteb/image/upload/v1723557125/pexels-atbo-245208_bwwxln.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            text-align: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        /* תיבת המלצות */
+        .testimonial {
+            position: relative;
+            overflow: hidden;
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            text-align: right;
+        }
+
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 100px;
+            color: rgba(101, 33, 143, 0.1);
+            font-family: serif;
+        }
+
+        /* אזור קריאה לפעולה */
+        .cta-section {
+            background: linear-gradient(45deg, var(--color-primary), var(--color-accent));
+            text-align: center;
+        }
+
+        .strikethrough {
+            text-decoration: line-through;
+            color: #888;
+        }
+
+        .discount-price {
+            color: #e53e3e;
+            font-weight: bold;
+        }
+
+        .discount-banner {
+            background-color: #e53e3e;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* התאמות למובייל */
+        @media (max-width: 768px) {
+            .logo {
+                height: 4rem;
+            }
+
+            nav a {
+                margin-right: 0;
+                margin-left: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <div class="discount-banner">
+        הנחה מיוחדת לחברי האיגוד - 25% הנחה על כל הסדנאות!
+    </div>
+    <!-- כותרת עליונה -->
+    <header class="bg-transparent text-white py-6 fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <img src="https://res.cloudinary.com/dsoh3yteb/image/upload/v1723558434/NewLogo_BLANK-Recovered_x4kgew.png" alt="Logo" class="logo h-16 md:h-24">
+            <nav class="hidden md:flex items-center">
+                <a href="#about" class="ml-4 hover:text-primary transition-colors">אודות</a>
+                <a href="#workshops" class="ml-4 hover:text-primary transition-colors">סדנאות</a>
+                <a href="#testimonials" class="hover:text-primary transition-colors">המלצות</a>
+            </nav>
+            <button class="md:hidden text-white" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- תפריט נייד -->
+    <div id="mobileMenu" class="mobile-menu">
+        <a href="#about" onclick="toggleMobileMenu()">אודות</a>
+        <a href="#workshops" onclick="toggleMobileMenu()">סדנאות</a>
+        <a href="#testimonials" onclick="toggleMobileMenu()">המלצות</a>
+    </div>
+
+    <!-- תוכן ראשי -->
+    <main class="flex-grow">
+        <!-- אזור הרואי -->
+        <section class="hero h-screen flex items-center justify-center text-white relative">
+            <div class="container mx-auto px-4 relative z-10" data-aos="fade-up">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">סדנאות בינה מלאכותית למעצבי פנים</h1>
+                <p class="text-xl mb-8">הצטרפו לסדנאות המובילות בתחום ושדרגו את היכולות שלכם</p>
+                <a href="#workshops" class="btn-primary text-lg">גלו את הסדנאות שלנו</a>
+            </div>
+        </section>
+
+        <!-- סדנאות -->
+        <section id="workshops" class="py-20 bg-gray-100">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center" data-aos="fade-up">הסדנאות שלנו</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- סדנה 1 -->
+                    <div class="workshop-card" data-aos="fade-up" data-aos-delay="100">
+                        <img src="https://res.cloudinary.com/dsoh3yteb/image/upload/v1723557186/02a1e6c1c4674a6381ca1fa29e61c740_wd26rw.png" alt="AI for Interior Designers" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2">סדנת בינה מלאכותית למעצבי פנים</h3>
+                            <p class="mb-4">למדו על הכלים החדשניים של בינה מלאכותית שישנו את האופן שבו אתם מעצבים.</p>
+                            <p class="mb-2"><strong>משך:</strong> שעה וחצי כל מפגש</p>
+                            <p class="mb-2"><strong>תאריכים:</strong></p>
+                            <ul class="list-disc list-inside mb-2">
+                                <li>מפגש 1: 21.10 בשעה 20:00</li>
+                                <li>מפגש 2: 29.10 בשעה 20:00</li>
+                            </ul>
+                            <p class="mb-4">
+                                <strong>עלות:</strong> 
+                                <span class="strikethrough">₪399</span> 
+                                <span class="discount-price">₪299</span>
+                            </p>
+                            <a href="https://mrng.to/7Y4VZ713sS" class="btn-primary">רכישה</a>
+                        </div>
+                    </div>
+                    <!-- סדנה 2 -->
+                    <div class="workshop-card" data-aos="fade-up" data-aos-delay="200">
+                        <img src="https://res.cloudinary.com/dsoh3yteb/image/upload/v1723557185/System_Auto-save_Untitled_Master_Bedroom-1_vpnklm.jpg" alt="Midjourney Workshop" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2">סדנת Midjourney למעצבי פנים</h3>
+                            <p class="mb-4">גלו כיצד Midjourney יכול לשפר את תהליך העיצוב שלכם ולהפוך רעיונות לויזואליזציות מדהימות.</p>
+                            <p class="mb-2"><strong>משך:</strong> שעתיים כל מפגש</p>
+                            <p class="mb-2"><strong>תאריכים:</strong></p>
+                            <ul class="list-disc list-inside mb-2">
+                                <li>מפגש 1: 30.10 בשעה 20:00</li>
+                                <li>מפגש 2: 4.11 בשעה 20:00</li>
+                            </ul>
+                            <p class="mb-4">
+                                <strong>עלות:</strong> 
+                                <span class="strikethrough">₪699</span> 
+                                <span class="discount-price">₪524</span>
+                            </p>
+                            <a href="https://mrng.to/pEjJtyhkB3" class="btn-primary">רכישה</a>
+                        </div>
+                    </div>
+                    <!-- סדנה 3 -->
+                    <div class="workshop-card" data-aos="fade-up" data-aos-delay="300">
+                        <img src="https://res.cloudinary.com/dsoh3yteb/image/upload/v1723557185/_c50c8048-35fb-4679-9382-b69f014f5d6e_duq94z.jpg" alt="PromeAI Workshop" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2">סדנת PromeAI</h3>
+                            <p class="mb-4">למדו כיצד להשתמש ב-PromeAI ככלי יעיל לשיפור תהליכי העיצוב והתכנון שלכם.</p>
+                            <p class="mb-2"><strong>משך:</strong> שעתיים</p>
+                            <p class="mb-2"><strong>תאריך:</strong> 5.11 בשעה 20:00</p>
+                            <p class="mb-4">
+                                <strong>עלות:</strong> 
+                                <span class="strikethrough">₪249</span> 
+                                <span class="discount-price">₪187</span>
+                            </p>
+                            <a href="https://mrng.to/1xWfnUhOQy" class="btn-primary">רכישה</a>
+                        </div>
+                    </div>
+                    <!-- סדנה 4 -->
+                    <div class="workshop-card" data-aos="fade-up" data-aos-delay="400">
+                        <img src="https://res.cloudinary.com/dsoh3yteb/image/upload/v1723557185/_c50c8048-35fb-4679-9382-b69f014f5d6e_duq94z.jpg" alt="סדנת יסודות HomeStyler" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2">סדנת יסודות HomeStyler</h3>
+                            <p class="mb-4">למדו ליצור הדמיות מרהיבות ותכניות מדויקות עם HomeStyler.</p>
+<p class="mb-2"><strong>משך:</strong> שעה וחצי כל מפגש, 4 מפגשים + מפגש שאלות ותשובות</p>
+                            <p class="mb-2"><strong>תאריכים:</strong></p>
+                            <ul class="list-disc list-inside mb-2">
+                                <li>מפגש 1: 6.11 בשעה 20:00</li>
+                                <li>מפגש 2: 17.11 בשעה 20:00</li>
+                                <li>מפגש 3: 18.11 בשעה 20:00</li>
+                                <li>מפגש 4: 19.11 בשעה 20:00</li>
+                                <li>מפגש שאלות ותשובות: 20.11 בשעה 20:00</li>
+                            </ul>
+                            <p class="mb-4">
+                                <strong>עלות:</strong> 
+                                <span class="strikethrough">₪1,199</span> 
+                                <span class="discount-price">₪899</span>
+                            </p>
+                            <a href="https://mrng.to/rrIaw5ti8o" class="btn-primary">רכישה</a>
+                        </div>
+                    </div>
+                    <!-- סדנה 5 -->
+                    <div class="workshop-card" data-aos="fade-up" data-aos-delay="500">
+                        <img src="https://res.cloudinary.com/dsoh3yteb/image/upload/v1723731945/webszite_wsamua.png" alt="סדנת יצירת דפי נחיתה" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2">סדנת יצירת דפי נחיתה</h3>
+                            <p class="mb-4">למדו ליצור דפי נחיתה שהופכים מבקרים ללקוחות.</p>
+                            <p class="mb-2"><strong>משך:</strong> שעה וחצי כל מפגש, 2 מפגשים</p>
+                            <p class="mb-2"><strong>תאריכים:</strong></p>
+                            <ul class="list-disc list-inside mb-2">
+                                <li>מפגש 1: 21.11 בשעה 20:00</li>
+                                <li>מפגש 2: 24.11 בשעה 20:00</li>
+                            </ul>
+                            <p class="mb-4">
+                                <strong>עלות:</strong> 
+                                <span class="strikethrough">₪499</span> 
+                                <span class="discount-price">₪374</span>
+                            </p>
+                            <a href="https://mrng.to/wenQtnX5gq" class="btn-primary">רכישה</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-12">
+                    <p class="text-xl font-bold mb-4">אל תפספסו את ההזדמנות להתקדם ולהוביל בתחום עיצוב הפנים!</p>
+                    <p class="text-lg mb-6">הצטרפו לסדנאות המקצועיות שיקנו לכם את הכלים והידע להצליח בשוק התחרותי של היום. מספר המקומות מוגבל—הירשמו עכשיו והבטיחו את מקומכם!</p>
+                </div>
+                <div class="bg-gray-200 p-6 rounded-lg mt-8">
+                    <p class="text-center text-lg font-bold mb-2">מידע חשוב:</p>
+                    <ul class="list-disc list-inside">
+                        <li>כל הסדנאות יתקיימו בזום.</li>
+                        <li>ההקלטות יהיו זמינות למשך חצי שנה.</li>
+                        <li>ההנחה של 25% תקפה לחברי האיגוד בלבד. יש להציג תעודת חבר בעת הרישום.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- המלצות -->
+        <section id="testimonials" class="py-20" style="background-image: url('https://res.cloudinary.com/dsoh3yteb/image/upload/v1723557126/pexels-valeria-boltneva-827518_v9uqp2.jpg'); background-size: cover; background-position: center;">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center text-white" data-aos="fade-up">מה אומרים המשתתפים שלנו?</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="testimonial" data-aos="fade-right">
+                        <p class="mb-4">"הייתה סדנה מעולה! העשרת לנו את עולם התוכן ולימדת אותנו כלים משמעותיים וחשובים בעולם האדריכלות ועיצוב הפנים! תודה רבה על המקצועיות, ההדרכה המצויינת וההקשבה 👋🏻🥰"</p>
+                        <p class="font-bold text-right">- דנה</p>
+                    </div>
+                    <div class="testimonial" data-aos="fade-left">
+                        <p class="mb-4">"עידו תודה רבה על כל לימוד הטכניקות, השיטות. הסבלנות בהחלט בהחלט סדנא מעמיקה בעיקר לתחום. אין לי ספק שנפגש גם בסדנאות הבאות!!!. מעבר להיכרות התוכנות שאיך עד כה לא נחשפתי אליהם וסופר חשובים במקצוע שלנו העברת השיעורים ביתר סבלנות הקנתה לי ביטחון ורצון לגעת בהכל. אז תודה רבה ונתראה בסדנא הבאה"</p>
+                        <p class="font-bold text-right">- זיו</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- קריאה לפעולה -->
+        <section class="cta-section py-20 text-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6" data-aos="fade-up">מוכנים לקחת את הצעד הבא?</h2>
+                <p class="text-xl mb-8" data-aos="fade-up" data-aos-delay="100">הצטרפו אלינו עכשיו וגלו כיצד בינה מלאכותית יכולה לשנות את עולם העיצוב שלכם</p>
+                <a href="#workshops" class="btn-primary text-lg inline-block" data-aos="fade-up" data-aos-delay="200">הרשמו לסדנה עכשיו</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- תחתית -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8 text-center md:text-right">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">AI לעיצוב פנים</h3>
+                    <p>מובילים את המהפכה בעולם עיצוב הפנים עם טכנולוגיות AI מתקדמות.</p>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-4">קישורים מהירים</h4>
+                    <ul>
+                        <li><a href="#about" class="hover:text-primary transition-colors">אודות</a></li>
+                        <li><a href="#workshops" class="hover:text-primary transition-colors">סדנאות</a></li>
+                        <li><a href="#testimonials" class="hover:text-primary transition-colors">המלצות</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-4">עקבו אחרינו</h4>
+                    <div class="flex justify-center md:justify-start items-center space-x-4">
+                        <a href="https://www.facebook.com/profile.php?id=61553596496338" target="_blank" class="hover:text-primary transition-colors"><i class="fab fa-facebook-f text-2xl"></i></a>
+                        <a href="https://www.tiktok.com/@triroars" target="_blank" class="hover:text-primary transition-colors"><i class="fab fa-tiktok text-2xl"></i></a>
+                        <a href="https://www.instagram.com/triroars/" target="_blank" class="hover:text-primary transition-colors"><i class="fab fa-instagram text-2xl"></i></a>
+                        <a href="https://chat.whatsapp.com/IKy7NXxUc7rBBMbDii9yQ9" target="_blank" class="hover:text-primary transition-colors"><i class="fab fa-whatsapp text-2xl"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 text-center">
+                <a href="https://chat.whatsapp.com/IKy7NXxUc7rBBMbDii9yQ9" target="_blank" class="btn-primary inline-block mb-4">
+                    <i class="fab fa-whatsapp ml-2"></i>הצטרפו לקבוצת הוואטסאפ השקטה שלנו לעדכונים מעולמות ה-AI
+                </a>
+                <p>&copy; 2024 סדנאות בינה מלאכותית למעצבי פנים. כל הזכויות שמורות.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- סקריפטים -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // גלילה חלקה
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    document.querySelector(href).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // שינוי צבע תפריט על גלילה
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-gray-800');
+                navbar.classList.remove('bg-transparent');
+            } else {
+                navbar.classList.remove('bg-gray-800');
+                navbar.classList.add('bg-transparent');
+            }
+        });
+    </script>
+</body>
+</html>
